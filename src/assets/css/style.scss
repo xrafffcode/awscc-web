@@ -1,0 +1,170 @@
+@import "bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+.btn-primary {
+    color: #fff;
+    background: linear-gradient(180deg, #7C5AED 0%, #6E34BB 100%);
+    border-color: #6E34BB;
+    transition: 0.3s all ease;
+
+    &:focus {
+        color: #fff;
+        background: linear-gradient(180deg, #6E34BB 0%, #7C5AED 100%);
+        border-color: #6E34BB;
+    }
+
+    &:active {
+        color: #fff;
+        background: linear-gradient(180deg, #6E34BB 0%, #7C5AED 100%);
+        border-color: #6E34BB;
+    }
+
+    &:hover {
+        color: #fff;
+        background: linear-gradient(180deg, #6E34BB 0%, #7C5AED 100%);
+        border-color: #6E34BB;
+    }
+}
+
+.gradient-primary {
+    background: linear-gradient(to right, #7340CA 0%, rgba(115, 64, 202, 0.4) 50%, #7340CA 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 5s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 100% 0;
+    }
+
+    50% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+
+.navbar {
+    z-index: 999;
+}
+
+.navbar .navbar-brand img {
+    width: 80px;
+}
+
+.nav-item .nav-link {
+    color: rgba(100, 97, 107, 1);
+}
+
+.nav-item .nav-link:hover {
+    color: #6E34BB;
+}
+
+.nav-item .nav-link.active {
+    position: relative;
+    color: #6E34BB;
+}
+
+.nav-item .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #6E34BB;
+    border-radius: 50%;
+}
+
+.bg-hero {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+}
+
+
+.introduce-badge {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(2px);
+    border-radius: 18px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: rgba(100, 97, 107, 1);
+    padding: .5rem 1rem;
+}
+
+.hero-title {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 72px;
+    text-align: center;
+}
+
+.hero-description {
+    color: rgba(100, 97, 107, 1);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.hero-image {
+    border-radius: 18px;
+}
+
+.hero-image-left {
+    width: 380px;
+    border-radius: 18px;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+}
+
+.hero-image-right {
+    width: 380px;
+    border-radius: 18px;
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+}
+
+.about-us-title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 27px;
+    color: rgba(124, 90, 237, 1);
+}
+
+.about-us-heading {
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 50px;
+    margin-bottom: 20px;
+}
+
+.about-us-description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.about-us-logo {
+    width: 120px;
+}
+
+@import "./responsive.scss";
