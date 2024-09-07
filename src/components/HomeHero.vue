@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 const introduceBadge = ref(`Introducing AWS Cloud Community (AWSCC) 🙌`)
-const title = ref(`Your Gateway to AWS <br> <span class="gradient-primary">Knowledge</span> and <span`)
+const title = ref(`Your Gateway to AWS <br> <span class="gradient-primary">Knowledge</span> and <span class="gradient-secondary">Networking</span>`)
 const description = ref(`AWSCC is your hub for exploring the world of AWS through events, <br> knowledge sharing, and collaboration with industry professionals.`)
 </script>
 
@@ -49,5 +49,5 @@ const description = ref(`AWSCC is your hub for exploring the world of AWS throug
 
             </row>
         </div>
-    </section>>
+    </section>
 </template>

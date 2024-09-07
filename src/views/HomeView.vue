@@ -7,6 +7,5 @@ import GoToTop from '@/components/GoToTop.vue'
 <template>
   <HomeHero />
   <HomeAbout />
-
   <GoToTop />
 </template>

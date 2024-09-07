@@ -38,7 +38,7 @@ const description = ref(`
                     <img src="@/assets/images/logo.png" alt="about-us" class="img-fluid about-us-logo">
                 </div>
 
-                <div class="col-12 col-md-6" v-html="description"></div>
+                <div class="col-12 col-md-6 mt-5 mt-md-0 mt-lg-0" v-html="description"></div>
             </div>
         </div>
     </section>
