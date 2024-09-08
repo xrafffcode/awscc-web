@@ -234,6 +234,49 @@ body {
     border-radius: 18px;
 }
 
+.event-card {
+    border-radius: 18px;
+    padding: 20px;
+    transition: 0.3s all ease;
+}
+
+.event-card:hover {
+    cursor: pointer;
+    color: rgba(124, 90, 237, 1) !important;
+}
+
+.event-card-image img {
+    width: 100%;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    height: 200px;
+    object-fit: cover;
+}
+
+.event-card-body {
+    margin-top: 20px;
+}
+
+.event-card-date {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgba(100, 97, 107, 1);
+}
+
+.event-card-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.event-card-description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgba(100, 97, 107, 1);
+}
+
 .py-5 {
     padding-top: 6rem !important;
     padding-bottom: 6rem !important;
