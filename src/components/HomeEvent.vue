@@ -51,7 +51,7 @@ const event = ref([
             <h1 class="heading text-center">Take a Look Back at <br> AWSCC Moments</h1>
             <p class="description text-center">See the various events we've organized to benefit our community</p>
 
-            <div class="row justify-content-center px-5 d-none d-md-flex d-lg-flex">
+            <div class="row justify-content-center p-5 d-none d-md-flex d-lg-flex">
                 <div class="col-12 col-md-6" :class="index >= 2 ? 'col-lg-4' : 'col-lg-6'"
                     v-for="(item, index) in event" :key="index">
                     <div class="event-card">
