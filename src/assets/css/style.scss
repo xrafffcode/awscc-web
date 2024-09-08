@@ -32,6 +32,17 @@ body {
     }
 }
 
+.btn-outline-secondary {
+    color: rgba(1, 1, 1, 1);
+    border: 1px solid rgba(1, 1, 1, 0.1);
+    transition: 0.3s all ease;
+
+    &:hover {
+        background-color: rgba(1, 1, 1, 0.1);
+        border-color: rgba(1, 1, 1, 0.1);
+    }
+}
+
 .gradient-primary {
     background: linear-gradient(to right, #7340CA 0%, rgba(115, 64, 202, 0.4) 50%, #7340CA 100%);
     background-size: 200% 100%;

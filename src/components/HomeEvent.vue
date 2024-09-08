@@ -86,5 +86,9 @@ const event = ref([
                 </swiper-slide>
             </swiper>
         </div>
+
+        <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-outline-secondary py-2 rounded">See More Events</a>
+        </div>
     </section>
 </template>
