@@ -11,7 +11,7 @@ const description = ref(`AWSCC is your hub for exploring the world of AWS throug
         <img src="@/assets/images/bg-hero.png" alt="bg-hero" class="bg-hero">
 
         <div class="container position-relative ">
-            <div class="d-flex flex-column align-items-center mb-5">
+            <div class="d-flex flex-column align-items-center ">
 
                 <div class="introduce-badge mb-4">
                     {{ introduceBadge }}
@@ -33,9 +33,10 @@ const description = ref(`AWSCC is your hub for exploring the world of AWS throug
             </div>
 
 
-            <row
+            <!-- <row
                 class="d-flex justify-content-center gap-4 position-relative mt-5 d-none d-md-none d-lg-none d-xl-flex">
-                <img src="https://placehold.co/600x400" alt="hero-images" class="img-fluid hero-image-left">
+
+                <img src="@/assets/images/hero/image-1.jpeg" alt="hero-images" class="img-fluid hero-image-left">
 
                 <div class="col-12 col-md-2 col-lg-2">
                     <img src="https://placehold.co/600x400" alt="hero-images" class="img-fluid hero-image">
@@ -47,7 +48,7 @@ const description = ref(`AWSCC is your hub for exploring the world of AWS throug
 
                 <img src="https://placehold.co/600x400" alt="hero-images" class="img-fluid hero-image-right">
 
-            </row>
+            </row> -->
         </div>
     </section>
 </template>

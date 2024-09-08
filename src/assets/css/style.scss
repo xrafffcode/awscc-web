@@ -4,6 +4,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
+    background-color: rgba(251, 250, 254, 1);
 }
 
 .btn-primary {
@@ -125,22 +126,26 @@ body {
 
 .hero-image {
     border-radius: 18px;
+    width: 100%;
+    object-fit: cover;
 }
 
 .hero-image-left {
-    width: 380px;
+    width: 370px;
     border-radius: 18px;
     position: absolute;
     bottom: 30px;
     left: 0;
+    object-fit: cover;
 }
 
 .hero-image-right {
-    width: 380px;
+    width: 370px;
     border-radius: 18px;
     position: absolute;
     bottom: 30px;
     right: 0;
+    object-fit: cover;
 }
 
 .about-us-title {
@@ -165,6 +170,73 @@ body {
 
 .about-us-logo {
     width: 120px;
+}
+
+.activity {
+    background: white;
+}
+
+.activity-card {
+    border-radius: 18px;
+    padding: 20px;
+    transition: 0.3s all ease;
+
+}
+
+.activity-title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    color: rgba(124, 90, 237, 1);
+}
+
+
+.activity-heading {
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 50px;
+    margin-bottom: 20px;
+}
+
+.activity-description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(100, 97, 107, 1)
+}
+
+.activity-card-image img {
+    width: 100%;
+    border-radius: 18px;
+}
+
+.activity-card-body {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.activity-card-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.activity-card-description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgba(100, 97, 107, 1);
+}
+
+.activity-card:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
+    border-radius: 18px;
+}
+
+.py-5 {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
 }
 
 @import "./responsive.scss";
