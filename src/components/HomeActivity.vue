@@ -31,9 +31,9 @@ const activity = ref([
 <template>
     <section class="activity py-5" id="activity">
         <div class="container">
-            <h3 class="activity-title text-center">OUR ACTIVITY</h3>
-            <h1 class="activity-heading text-center">What We Do at AWSCC</h1>
-            <p class="activity-description text-center">AWSCC hosts a wide range of exciting activities designed to <br>
+            <h3 class="title text-center">OUR ACTIVITY</h3>
+            <h1 class="heading text-center">What We Do at AWSCC</h1>
+            <p class="description text-center">AWSCC hosts a wide range of exciting activities designed to <br>
                 empower
                 and engage our community</p>
 
