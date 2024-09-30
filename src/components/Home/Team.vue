@@ -47,7 +47,7 @@ onMounted(() => {
                         <div v-for="(member, index) in section1" :key="'section1-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.position }}</p>
+                                <p class="team-position">{{ member.division?.name }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
@@ -68,7 +68,7 @@ onMounted(() => {
                         <div v-for="(member, index) in section1" :key="'section1-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.position }}</p>
+                                <p class="team-position">{{ member.division?.name }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
@@ -91,7 +91,7 @@ onMounted(() => {
                         <div v-for="(member, index) in section2" :key="'section2-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.position }}</p>
+                                <p class="team-position">{{ member.division?.name }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
@@ -112,7 +112,7 @@ onMounted(() => {
                         <div v-for="(member, index) in section2" :key="'section2-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.position }}</p>
+                                <p class="team-position">{{ member.division?.name }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
@@ -135,7 +135,7 @@ onMounted(() => {
                         <div v-for="(member, index) in section3" :key="'section3-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.position }}</p>
+                                <p class="team-position">{{ member.division?.name }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
@@ -156,7 +156,7 @@ onMounted(() => {
                         <div v-for="(member, index) in section3" :key="'section2-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.position }}</p>
+                                <p class="team-position">{{ member.division?.name }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">

@@ -5,7 +5,7 @@
             <h1 class="heading text-center">Our Guiding Vision & Mission</h1>
 
             <div class="row justify-content-center mt-5">
-                <div class="col-12 col-md-5">
+                <div class="col-12 col-md-5 mb-5 mb-md-0 mb-lg-0">
                     <div class="d-flex flex-column align-items-center">
                         <div class="badge-vm">
                             <img src="@/assets/images/logo/ic_vision.svg" alt="vision-mission" class="img-fluid me-1">
