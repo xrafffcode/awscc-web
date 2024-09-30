@@ -23,9 +23,7 @@ const section2 = ref(galleries.value.slice(galleriesPerSection))
             <p class="description text-center">
                 Various kinds of activities that we have carried out and we immortalized in this documentation.
             </p>
-
         </div>
-
 
         <div class="mastering-tools mt-5">
             <div class="tools-slideshow toRight">
