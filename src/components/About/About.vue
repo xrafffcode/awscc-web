@@ -27,7 +27,6 @@ const description = ref(`
 </script>
 
 <template>
-
     <section class="about-us py-5" id="about">
         <div class="container">
             <div class="row">

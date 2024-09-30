@@ -1,19 +1,19 @@
 <script setup>
-import HomeHero from '@/components/HomeHero.vue'
-import HomeAbout from '@/components/HomeAbout.vue'
-import HomeActivity from '@/components/HomeActivity.vue'
-import HomeEvent from '@/components/HomeEvent.vue'
-import HomeTeam from '@/components/HomeTeam.vue'
-import HomeSocialMedia from '@/components/HomeSocialMedia.vue'
+import Hero from '@/components/Home/Hero.vue'
+import About from '@/components/Home/About.vue'
+import Activity from '@/components/Home/Activity.vue'
+import Event from '@/components/Home/Event.vue'
+import Team from '@/components/Home/Team.vue'
+import SocialMedia from '@/components/Home/SocialMedia.vue'
 import GoToTop from '@/components/GoToTop.vue'
 </script>
 
 <template>
-  <HomeHero />
-  <HomeAbout />
-  <HomeActivity />
-  <HomeEvent />
-  <HomeTeam />
-  <HomeSocialMedia />
+  <Hero />
+  <About />
+  <Activity />
+  <Event />
+  <Team />
+  <SocialMedia />
   <GoToTop />
 </template>

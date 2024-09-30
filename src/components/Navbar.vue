@@ -12,19 +12,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0 ">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#hero">Home</a>
+                        <RouterLink class="nav-link" to="/">Home</RouterLink>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About us</a>
+                        <RouterLink class="nav-link" to="/about">About us</RouterLink>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Events</a>
+                        <RouterLink class="nav-link" to="/events">Events</RouterLink>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Portfolio</a>
+                        <RouterLink class="nav-link" to="/portfolio">Portfolio</RouterLink>
                     </li>
                 </ul>
 

@@ -7,6 +7,17 @@ body {
     background-color: rgba(251, 250, 254, 1);
 }
 
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
 .btn-primary {
     color: #fff;
     background: linear-gradient(180deg, #7C5AED 0%, #6E34BB 100%);
@@ -79,16 +90,12 @@ body {
     color: rgba(100, 97, 107, 1);
 }
 
-.nav-item .nav-link:hover {
-    color: #6E34BB;
-}
-
-.nav-item .nav-link.active {
+.router-link-active {
     position: relative;
-    color: #6E34BB;
+    color: #6E34BB !important;
 }
 
-.nav-item .nav-link.active::after {
+.router-link-active::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -506,6 +513,30 @@ body {
     height: 25px;
 }
 
+.badge-vm {
+    border: 1px solid #00000011;
+    border-radius: 18px;
+    padding: 8px 16px;
+    font-size: 12px;
+    line-height: 16px;
+    color: #6E34BB;
+    font-weight: 600;
+}
 
+.nav-pills .nav-link {
+    border: 1px solid #00000011;
+    color: rgba(100, 97, 107, 1);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: #6E34BB;
+    color: white;
+}
 
 @import "./responsive.scss";
