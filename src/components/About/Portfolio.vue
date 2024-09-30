@@ -111,4 +111,15 @@ onMounted(() => {
     background: none;
     z-index: 99;
 }
+
+@media (max-width: 600px) {
+
+    .portfolio .cardSlim img {
+        width: 200px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+}
 </style>
