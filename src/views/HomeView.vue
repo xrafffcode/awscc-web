@@ -4,6 +4,7 @@ import HomeAbout from '@/components/HomeAbout.vue'
 import HomeActivity from '@/components/HomeActivity.vue'
 import HomeEvent from '@/components/HomeEvent.vue'
 import HomeTeam from '@/components/HomeTeam.vue'
+import HomeSocialMedia from '@/components/HomeSocialMedia.vue'
 import GoToTop from '@/components/GoToTop.vue'
 </script>
 
@@ -13,5 +14,6 @@ import GoToTop from '@/components/GoToTop.vue'
   <HomeActivity />
   <HomeEvent />
   <HomeTeam />
+  <HomeSocialMedia />
   <GoToTop />
 </template>
