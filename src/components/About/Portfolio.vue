@@ -1,31 +1,18 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useGalleryStore } from '@/stores/gallery';
+import { ref } from 'vue'
+import { faker } from '@faker-js/faker'
 
-const galleryStore = useGalleryStore();
-const { galleries, total, loading, error, success } = storeToRefs(galleryStore);
-const { fetchGalleries } = galleryStore;
+const totalGalleries = 16
+const galleriesPerSection = Math.ceil(totalGalleries / 2)
 
-const section1 = ref([]);
-const section2 = ref([]);
+const galleries = ref(
+    Array.from({ length: totalGalleries }, () => ({
+        image: faker.image.urlPicsumPhotos()
+    }))
+)
 
-const fetchAndSplitGalleries = async () => {
-    try {
-        await fetchGalleries({ limit: 15 });
-
-        const membersPerSection = Math.ceil(total.value / 2);
-
-        section1.value = galleries.value.slice(0, membersPerSection);
-        section2.value = galleries.value.slice(membersPerSection);
-    } catch (err) {
-        console.error('Error fetching teams:', err);
-    }
-};
-
-onMounted(() => {
-    fetchAndSplitGalleries();
-})
+const section1 = ref(galleries.value.slice(0, galleriesPerSection))
+const section2 = ref(galleries.value.slice(galleriesPerSection))
 </script>
 
 <template>
@@ -110,16 +97,5 @@ onMounted(() => {
     height: 100%;
     background: none;
     z-index: 99;
-}
-
-@media (max-width: 600px) {
-
-    .portfolio .cardSlim img {
-        width: 200px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 12px;
-    }
-
 }
 </style>

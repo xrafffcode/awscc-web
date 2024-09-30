@@ -1,35 +1,21 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useTeamStore } from '@/stores/team';
+import { ref } from 'vue'
+import { faker } from '@faker-js/faker'
 
-const teamStore = useTeamStore();
-const { teams, total, loading, error, success } = storeToRefs(teamStore);
-const { fetchTeams } = teamStore;
+const totalMembers = 52
+const membersPerSection = Math.ceil(totalMembers / 3)
 
-const section1 = ref([]);
-const section2 = ref([]);
-const section3 = ref([]);
+const teamMembers = ref(
+    Array.from({ length: totalMembers }, (_, i) => ({
+        name: faker.name.firstName() + ' ' + faker.name.lastName(),
+        position: faker.name.jobTitle()
+    }))
+)
 
-const fetchAndSplitTeams = async () => {
-    try {
-        await fetchTeams();
-
-        const membersPerSection = Math.ceil(total.value / 3);
-
-        section1.value = teams.value.slice(0, membersPerSection);
-        section2.value = teams.value.slice(membersPerSection, membersPerSection * 2);
-        section3.value = teams.value.slice(membersPerSection * 2);
-    } catch (err) {
-        console.error('Error fetching teams:', err);
-    }
-};
-
-onMounted(() => {
-    fetchAndSplitTeams();
-});
+const section1 = ref(teamMembers.value.slice(0, membersPerSection))
+const section2 = ref(teamMembers.value.slice(membersPerSection, membersPerSection * 2))
+const section3 = ref(teamMembers.value.slice(membersPerSection * 2))
 </script>
-
 
 <template>
     <section class="team py-5">
@@ -47,18 +33,14 @@ onMounted(() => {
                         <div v-for="(member, index) in section1" :key="'section1-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.division?.name }}</p>
+                                <p class="team-position">{{ member.position }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
                                 </div>
                                 <div class="social-icon">
-                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
                                 </div>
                             </div>
                         </div>
@@ -68,18 +50,14 @@ onMounted(() => {
                         <div v-for="(member, index) in section1" :key="'section1-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.division?.name }}</p>
+                                <p class="team-position">{{ member.position }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
                                 </div>
                                 <div class="social-icon">
-                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
                                 </div>
                             </div>
                         </div>
@@ -91,18 +69,14 @@ onMounted(() => {
                         <div v-for="(member, index) in section2" :key="'section2-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.division?.name }}</p>
+                                <p class="team-position">{{ member.position }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
                                 </div>
                                 <div class="social-icon">
-                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
                                 </div>
                             </div>
                         </div>
@@ -112,18 +86,14 @@ onMounted(() => {
                         <div v-for="(member, index) in section2" :key="'section2-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.division?.name }}</p>
+                                <p class="team-position">{{ member.position }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
                                 </div>
                                 <div class="social-icon">
-                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
                                 </div>
                             </div>
                         </div>
@@ -135,18 +105,14 @@ onMounted(() => {
                         <div v-for="(member, index) in section3" :key="'section3-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.division?.name }}</p>
+                                <p class="team-position">{{ member.position }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
                                 </div>
                                 <div class="social-icon">
-                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
                                 </div>
                             </div>
                         </div>
@@ -156,18 +122,14 @@ onMounted(() => {
                         <div v-for="(member, index) in section3" :key="'section2-' + index" class="cardSlim h-100">
                             <div class="profile">
                                 <h3 class="team-name">{{ member.name }}</h3>
-                                <p class="team-position">{{ member.division?.name }}</p>
+                                <p class="team-position">{{ member.position }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
                                 </div>
                                 <div class="social-icon">
-                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
-                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
-                                    </a>
+                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
                                 </div>
                             </div>
                         </div>
