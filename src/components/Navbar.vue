@@ -28,7 +28,8 @@
                     </li>
                 </ul>
 
-                <a class="btn btn-primary py-2 rounded" href="#">Join our event</a>
+                <RouterLink class="btn btn-primary py-2 rounded w-100 w-md-auto" to="/events">Join our event
+                </RouterLink>
             </div>
         </div>
     </nav>

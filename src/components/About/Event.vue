@@ -59,7 +59,7 @@ const event = ref([
         <div class="d-flex d-md-none d-lg-none">
             <swiper :grabCursor="true" :modules="modules" class="mySwiper" :spaceBetween="10" :slidesPerView="1.2">
                 <swiper-slide v-for="(item, index) in event" :key="index">
-                    <div class="event-card">
+                    <div class="event-card p-3">
                         <div class="event-card-image">
                             <img :src="item.image" alt="event-image" class="img-fluid">
                         </div>

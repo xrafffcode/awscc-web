@@ -1,4 +1,12 @@
 @media screen and (max-width: 600px) {
+    .router-link-active::after {
+        display: none;
+    }
+
+    .nav-link {
+        padding: 0px;
+    }
+
     .navbar .navbar-brand img {
         width: 60px;
     }
