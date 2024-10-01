@@ -4,11 +4,15 @@
     }
 
     .nav-link {
-        padding: 0px;
+        padding: 10px 0px !important
     }
 
     .navbar .navbar-brand img {
         width: 60px;
+    }
+
+    .navbar .btn.btn-primary {
+        width: 100% !important;
     }
 
     .introduce-badge {
