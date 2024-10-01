@@ -24,7 +24,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <RouterLink class="nav-link" to="/portfolio">Portfolio</RouterLink>
+                        <RouterLink class="nav-link" to="/gallery">Gallery</RouterLink>
                     </li>
                 </ul>
 
