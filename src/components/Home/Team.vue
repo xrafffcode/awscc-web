@@ -1,21 +1,35 @@
 <script setup>
-import { ref } from 'vue'
-import { faker } from '@faker-js/faker'
+import { ref, onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useTeamStore } from '@/stores/team';
 
-const totalMembers = 52
-const membersPerSection = Math.ceil(totalMembers / 3)
+const teamStore = useTeamStore();
+const { teams, total, loading, error, success } = storeToRefs(teamStore);
+const { fetchTeams } = teamStore;
 
-const teamMembers = ref(
-    Array.from({ length: totalMembers }, (_, i) => ({
-        name: faker.name.firstName() + ' ' + faker.name.lastName(),
-        position: faker.name.jobTitle()
-    }))
-)
+const section1 = ref([]);
+const section2 = ref([]);
+const section3 = ref([]);
 
-const section1 = ref(teamMembers.value.slice(0, membersPerSection))
-const section2 = ref(teamMembers.value.slice(membersPerSection, membersPerSection * 2))
-const section3 = ref(teamMembers.value.slice(membersPerSection * 2))
+const fetchAndSplitTeams = async () => {
+    try {
+        await fetchTeams();
+
+        const membersPerSection = Math.ceil(total.value / 3);
+
+        section1.value = teams.value.slice(0, membersPerSection);
+        section2.value = teams.value.slice(membersPerSection, membersPerSection * 2);
+        section3.value = teams.value.slice(membersPerSection * 2);
+    } catch (err) {
+        console.error('Error fetching teams:', err);
+    }
+};
+
+onMounted(() => {
+    fetchAndSplitTeams();
+});
 </script>
+
 
 <template>
     <section class="team py-5">
@@ -37,10 +51,14 @@ const section3 = ref(teamMembers.value.slice(membersPerSection * 2))
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    </a>
                                 </div>
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -54,10 +72,14 @@ const section3 = ref(teamMembers.value.slice(membersPerSection * 2))
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    </a>
                                 </div>
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -73,10 +95,14 @@ const section3 = ref(teamMembers.value.slice(membersPerSection * 2))
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    </a>
                                 </div>
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -90,10 +116,14 @@ const section3 = ref(teamMembers.value.slice(membersPerSection * 2))
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    </a>
                                 </div>
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -109,10 +139,14 @@ const section3 = ref(teamMembers.value.slice(membersPerSection * 2))
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    </a>
                                 </div>
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -126,10 +160,14 @@ const section3 = ref(teamMembers.value.slice(membersPerSection * 2))
                             </div>
                             <div class="d-flex">
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    <a :href="member.instagram" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_instagram.svg" alt="instagram">
+                                    </a>
                                 </div>
                                 <div class="social-icon">
-                                    <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer">
+                                        <img src="@/assets/images/logo/ic_linkedin.svg" alt="linkedin">
+                                    </a>
                                 </div>
                             </div>
                         </div>

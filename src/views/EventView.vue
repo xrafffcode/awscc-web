@@ -1,92 +1,32 @@
 <script setup>
+import { useEventStore } from '@/stores/event';
+import { storeToRefs } from 'pinia';
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { DateTime } from 'luxon';
 
 const currentTab = ref('upcoming')
-const introduceBadge = ref('34 Event have been completed')
 const title = ref('Explore, Learn, and <br> Connect at AWSCC Events')
 const description = ref('Stay informed about upcoming workshops, summits, and networking <br> opportunities that drive the future of technology.')
 
-const events = ref([
-    {
-        image: new URL('@/assets/images/event/1.jpeg', import.meta.url).href,
-        date: new Date('October 4, 2024 00:00:00'),
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/2.jpeg', import.meta.url).href,
-        date: new Date('December 4, 2024 00:00:00'),
-        title: 'December 2024 Meetup',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/1.jpeg', import.meta.url).href,
-        date: new Date('October 4, 2024 00:00:00'),
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/2.jpeg', import.meta.url).href,
-        date: new Date('December 4, 2024 00:00:00'),
-        title: 'December 2024 Meetup',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    }, {
-        image: new URL('@/assets/images/event/1.jpeg', import.meta.url).href,
-        date: new Date('October 4, 2024 00:00:00'),
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/2.jpeg', import.meta.url).href,
-        date: new Date('December 4, 2024 00:00:00'),
-        title: 'December 2024 Meetup',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    }, {
-        image: new URL('@/assets/images/event/1.jpeg', import.meta.url).href,
-        date: new Date('October 4, 2024 00:00:00'),
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/2.jpeg', import.meta.url).href,
-        date: new Date('December 4, 2024 00:00:00'),
-        title: 'December 2024 Meetup',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    }, {
-        image: new URL('@/assets/images/event/1.jpeg', import.meta.url).href,
-        date: new Date('October 4, 2024 00:00:00'),
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/2.jpeg', import.meta.url).href,
-        date: new Date('December 4, 2024 00:00:00'),
-        title: 'December 2024 Meetup',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/1.jpeg', import.meta.url).href,
-        date: new Date('October 4, 2024 00:00:00'),
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/2.jpeg', import.meta.url).href,
-        date: new Date('December 4, 2024 00:00:00'),
-        title: 'December 2024 Meetup',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-])
+const eventStore = useEventStore();
+const { events } = storeToRefs(eventStore);
+const { fetchEvents } = eventStore;
+
+fetchEvents({ status: 'published' })
 
 const switchTab = (tab) => {
     currentTab.value = tab;
+
+    if (currentTab.value === 'upcoming') {
+        fetchEvents({ status: 'published' });
+    } else if (currentTab.value === 'past') {
+        fetchEvents({ status: 'archived' });
+    }
 }
 
-
 const calculateCountdown = (eventDate) => {
+    const eventDateObj = new Date(eventDate);
     const now = new Date().getTime();
-    const distance = eventDate - now;
+    const distance = eventDateObj.getTime() - now;
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -115,12 +55,13 @@ onMounted(() => {
 
         <div class="container position-relative">
             <div class="d-flex flex-column align-items-center">
-                <div class="introduce-badge mb-4">{{ introduceBadge }}</div>
+                <div class="introduce-badge mb-4">{{ events.filter(event => event.status === 'archived').length }} Event
+                    have been completed</div>
                 <h1 class="hero-title" v-html="title"></h1>
                 <p class="hero-description" v-html="description"></p>
 
                 <nav class="mt-5">
-                    <div class="nav shadow-sm">
+                    <div class="nav nav-event shadow-sm">
                         <button class="nav-link" :class="{ active: currentTab === 'upcoming' }"
                             @click="switchTab('upcoming')">Upcoming Event</button>
                         <button class="nav-link" :class="{ active: currentTab === 'past' }"
@@ -142,21 +83,24 @@ onMounted(() => {
                     <div class="event-card">
                         <div class="event-card-image position-relative">
                             <div class="badge-upcoming">🔥 Upcoming</div>
-                            <img :src="item.image" alt="event-image" class="img-fluid">
+                            <img :src="item.thumbnail" alt="event-image" class="img-fluid">
                         </div>
 
                         <div class="event-card-body">
                             <h3 class="event-card-date mb-2">
-                                {{ DateTime.fromJSDate(item.date).toFormat('dd LLL yyyy') }}
+                                {{ new Intl.DateTimeFormat('en-US', {
+                                    day: '2-digit', month:
+                                        'long', year: 'numeric'
+                                }).format(new Date(item.date)) }}
                             </h3>
                             <h3 class="event-card-title">{{ item.title }}</h3>
-                            <p class="event-card-description">{{ item.description }}</p>
+                            <p class="event-card-description" v-html="item.excerpt"></p>
 
                             <hr>
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <h1 class="event-card-countdown">{{ item.countdown }}</h1>
-                                <a href="#" class="btn btn-outline-secondary">Register</a>
+                                <a :href="item.url" class="btn btn-outline-secondary" target="_blank">Register</a>
                             </div>
                         </div>
                     </div>
@@ -173,21 +117,24 @@ onMounted(() => {
                     <div class="event-card">
                         <div class="event-card-image position-relative">
                             <div class="badge-past">✅ Done</div>
-                            <img :src="item.image" alt="event-image" class="img-fluid">
+                            <img :src="item.thumbnail" alt="event-image" class="img-fluid">
                         </div>
 
                         <div class="event-card-body">
                             <h3 class="event-card-date mb-2">
-                                {{ DateTime.fromJSDate(item.date).toFormat('dd LLL yyyy') }}
+                                {{ new Intl.DateTimeFormat('en-US', {
+                                    day: '2-digit', month:
+                                        'long', year: 'numeric'
+                                }).format(new Date(item.date)) }}
                             </h3>
                             <h3 class="event-card-title">{{ item.title }}</h3>
-                            <p class="event-card-description">{{ item.description }}</p>
+                            <p class="event-card-description" v-html="item.excerpt"></p>
 
                             <hr>
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <h1 class="event-card-countdown">{{ item.countdown }}</h1>
-                                <a href="#" class="btn btn-outline-secondary">Register</a>
+                                <a :href="item.url" class="btn btn-outline-secondary" target="_blank">Register</a>
                             </div>
                         </div>
                     </div>
@@ -198,7 +145,7 @@ onMounted(() => {
 </template>
 
 <style>
-.nav {
+.nav.nav-event {
     display: flex;
     margin-bottom: 1rem;
     gap: .5rem;
@@ -207,7 +154,7 @@ onMounted(() => {
     border-radius: 14px !important;
 }
 
-.nav-link {
+.nav-event .nav-link {
     background: transparent;
     border: none;
     color: #64616B;
@@ -217,11 +164,11 @@ onMounted(() => {
     border-radius: 12px;
 }
 
-.nav-link:hover {
+.nav-event .nav-link:hover {
     color: #101010;
 }
 
-.nav-link.active {
+.nav-event .nav-link.active {
     background-color: #101010;
     color: #fff;
 }

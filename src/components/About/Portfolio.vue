@@ -1,18 +1,31 @@
 <script setup>
-import { ref } from 'vue'
-import { faker } from '@faker-js/faker'
+import { ref, onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useGalleryStore } from '@/stores/gallery';
 
-const totalGalleries = 16
-const galleriesPerSection = Math.ceil(totalGalleries / 2)
+const galleryStore = useGalleryStore();
+const { galleries, total } = storeToRefs(galleryStore);
+const { fetchGalleries } = galleryStore;
 
-const galleries = ref(
-    Array.from({ length: totalGalleries }, () => ({
-        image: faker.image.urlPicsumPhotos()
-    }))
-)
+const section1 = ref([]);
+const section2 = ref([]);
 
-const section1 = ref(galleries.value.slice(0, galleriesPerSection))
-const section2 = ref(galleries.value.slice(galleriesPerSection))
+const fetchAndSplitGalleries = async () => {
+    try {
+        await fetchGalleries({ limit: 15 });
+
+        const membersPerSection = Math.ceil(total.value / 2);
+
+        section1.value = galleries.value.slice(0, membersPerSection);
+        section2.value = galleries.value.slice(membersPerSection);
+    } catch (err) {
+        console.error('Error fetching teams:', err);
+    }
+};
+
+onMounted(() => {
+    fetchAndSplitGalleries();
+})
 </script>
 
 <template>
@@ -23,7 +36,9 @@ const section2 = ref(galleries.value.slice(galleriesPerSection))
             <p class="description text-center">
                 Various kinds of activities that we have carried out and we immortalized in this documentation.
             </p>
+
         </div>
+
 
         <div class="mastering-tools mt-5">
             <div class="tools-slideshow toRight">

@@ -18,7 +18,7 @@ export const useDivisionStore = defineStore({
             this.loading = true;
 
             try {
-                const response = await axiosInstance.get(`/division`, { params });
+                const response = await axiosInstance.get(`/divisions`, { params });
 
                 this.divisions = response.data.data;
             } catch (error) {

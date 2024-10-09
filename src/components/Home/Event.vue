@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue'
+import { useEventStore } from '@/stores/event';
+import { storeToRefs } from 'pinia';
 
 import 'swiper/css'
 
@@ -8,40 +9,11 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 
 const modules = [Pagination]
 
-const event = ref([
-    {
-        image: new URL('@/assets/images/event/1.jpeg', import.meta.url).href,
-        date: 'AUGUST 4, 2024',
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/2.jpeg', import.meta.url).href,
-        date: 'AUGUST 4, 2024',
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/1.jpeg', import.meta.url).href,
-        date: 'AUGUST 4, 2024',
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/2.jpeg', import.meta.url).href,
-        date: 'AUGUST 4, 2024',
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-    {
-        image: new URL('@/assets/images/event/1.jpeg', import.meta.url).href,
-        date: 'AUGUST 4, 2024',
-        title: 'AWSCC Summit 2024',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.'
-    },
-])
+const eventStore = useEventStore()
+const { events } = storeToRefs(eventStore)
+const { fetchEvents } = eventStore
 
-
+fetchEvents({ limit: 5 })
 </script>
 
 <template>
@@ -52,43 +24,50 @@ const event = ref([
             <p class="description text-center">See the various events we've organized to benefit our community</p>
 
             <div class="row justify-content-center p-5 d-none d-md-flex d-lg-flex">
-                <div class="col-12 col-md-6" :class="index >= 2 ? 'col-lg-4' : 'col-lg-6'"
-                    v-for="(item, index) in event" :key="index">
-                    <div class="event-card">
-                        <div class="event-card-image">
-                            <img :src="item.image" alt="event-image" class="img-fluid">
-                        </div>
+                <div class="col-12 col-md-6 mb-5" :class="index >= 2 ? 'col-lg-4' : 'col-lg-6'"
+                    v-for="(item, index) in events" :key="index">
+                    <a :href="item.url" target="_blank" class="text-decoration-none text-dark">
+                        <div class="event-card">
+                            <div class="event-card-image">
+                                <img :src="item.thumbnail" alt="event-image" class="img-fluid">
+                            </div>
 
-                        <div class="event-card-body">
-                            <h3 class="event-card-date">{{ item.date }}</h3>
-                            <h3 class="event-card-title">{{ item.title }}</h3>
-                            <p class="event-card-description">{{ item.description }}</p>
+                            <div class="event-card-body">
+                                <h3 class="event-card-date">{{ new Intl.DateTimeFormat('en-US', {
+                                    day: '2-digit', month:
+                                        'long', year: 'numeric'
+                                }).format(new Date(item.date)) }}</h3>
+                                <h3 class="event-card-title">{{ item.title }}</h3>
+                                <p class="event-card-description" v-html="item.excerpt"></p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
 
         <div class="d-flex d-md-none d-lg-none">
             <swiper :grabCursor="true" :modules="modules" class="mySwiper" :spaceBetween="10" :slidesPerView="1.2">
-                <swiper-slide v-for="(item, index) in event" :key="index">
-                    <div class="event-card p-3">
-                        <div class="event-card-image">
-                            <img :src="item.image" alt="event-image" class="img-fluid">
-                        </div>
+                <swiper-slide v-for="(item, index) in events" :key="index">
+                    <a :href="item.url" target="_blank" class="text-decoration-none text-dark">
+                        <div class="event-card p-3">
+                            <div class="event-card-image">
+                                <img :src="item.thumbnail" alt="event-image" class="img-fluid">
+                            </div>
 
-                        <div class="event-card-body">
-                            <h3 class="event-card-date">{{ item.date }}</h3>
-                            <h3 class="event-card-title">{{ item.title }}</h3>
-                            <p class="event-card-description">{{ item.description }}</p>
+                            <div class="event-card-body">
+                                <h3 class="event-card-date">{{ item.date }}</h3>
+                                <h3 class="event-card-title">{{ item.title }}</h3>
+                                <p class="event-card-description">{{ item.excerpt }}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </swiper-slide>
             </swiper>
         </div>
 
         <div class="d-flex justify-content-center">
-            <a href="#" class="btn btn-outline-secondary py-2 rounded">See More Events</a>
+            <RouterLink to="/events" class="btn btn-outline-secondary py-2 rounded">See More Events</RouterLink>
         </div>
     </section>
 </template>

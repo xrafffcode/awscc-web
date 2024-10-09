@@ -1,16 +1,16 @@
 <script setup>
-import { ref } from 'vue'
-import { faker } from '@faker-js/faker'
+import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useGalleryStore } from '@/stores/gallery';
+
+const galleryStore = useGalleryStore();
+const { galleries } = storeToRefs(galleryStore);
+const { fetchGalleries } = galleryStore;
+
+fetchGalleries()
 
 const title = ref('Events Successfully <br> Completed, Driving Impact <br> and Growth')
 const description = ref('We’re proud to showcase our past events, each one successfully executed <br> with valuable insights and impactful outcomes.')
-
-
-const galleries = ref(
-    Array.from({ length: 20 }, () => ({
-        image: faker.image.urlPicsumPhotos()
-    }))
-)
 </script>
 
 <template>
@@ -32,7 +32,7 @@ const galleries = ref(
                     <div class="image-wrapper">
                         <img :src="gallery.image" alt="gallery-image" class="gallery-image">
                         <div class="image-title">
-                            <h3>Great sharing session with Universitas Muhammadiyah Purwokerto</h3>
+                            <h3>{{ gallery.title }}</h3>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ const galleries = ref(
                     <div class="image-wrapper">
                         <img :src="gallery.image" alt="gallery-image" class="gallery-image">
                         <div class="image-title">
-                            <h3>Great sharing session with Universitas Muhammadiyah Purwokerto</h3>
+                            <h3>{{ gallery.title }}</h3>
                         </div>
                     </div>
                 </div>

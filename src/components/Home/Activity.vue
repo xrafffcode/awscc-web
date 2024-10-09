@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue'
+import { useActivityStore } from '@/stores/activity';
+import { storeToRefs } from 'pinia';
 
 import 'swiper/css'
 import 'swiper/css/effect-cards';
@@ -9,23 +10,11 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 
 const modules = [Pagination, EffectCards]
 
-const activity = ref([
-    {
-        title: 'Webinar & Workshop',
-        description: 'Online training sessions covering various AWS topics, from basics to advanced levels, delivered by industry experts.',
-        image: new URL('@/assets/images/activity/workshop.jpeg', import.meta.url).href
-    },
-    {
-        title: 'Hackathons & Challenges',
-        description: 'Coding competitions challenging members to develop creative solutions using AWS, with exciting prizes.',
-        image: new URL('@/assets/images/activity/workshop.jpeg', import.meta.url).href
-    },
-    {
-        title: 'Networking Events',
-        description: 'Networking events with industry experts, industry leaders, and other community members.',
-        image: new URL('@/assets/images/activity/networking.jpeg', import.meta.url).href
-    }
-])
+const activityStore = useActivityStore()
+const { activities } = storeToRefs(activityStore)
+const { fetchActivities } = activityStore
+
+fetchActivities()
 </script>
 
 <template>
@@ -37,8 +26,8 @@ const activity = ref([
                 empower
                 and engage our community</p>
 
-            <div class="row justify-content-center px-5 d-none d-md-flex d-lg-flex">
-                <div class="col-12 col-md-6 col-lg-4" v-for="item in activity">
+            <div class="row justify-content-center px-5 d-none d-md-flex d-lg-flex mt-5">
+                <div class="col-12 col-md-6 col-lg-4" v-for="item in activities">
                     <div class="activity-card">
                         <div class="activity-card-image">
                             <img :src="item.image" alt="activity-image" class="img-fluid">
@@ -52,10 +41,10 @@ const activity = ref([
                 </div>
             </div>
 
-            <div class="row justify-content-center px-5 d-flex d-md-none d-lg-none d-xl-none">
+            <div class="row justify-content-center px-5 d-flex d-md-none d-lg-none d-xl-none mt-5">
                 <swiper :effect="'cards'" :grabCursor="true" :modules="modules" class="mySwiper" :centeredSlides="true"
                     :initialSlide="1">
-                    <swiper-slide v-for="item in activity">
+                    <swiper-slide v-for="item in activities">
                         <div class="activity-card">
                             <div class="activity-card-image">
                                 <img :src="item.image" alt="activity-image" class="img-fluid">

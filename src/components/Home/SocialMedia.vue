@@ -9,14 +9,11 @@
 
             <div class="icons mt-5">
                 <div class="icon">
-                    <img src="@/assets/images/logo/ic_instagram.svg" alt="Instagram Icon">
+                    <a href="https://www.instagram.com/awscloudclub.id/" target="_blank" rel="noopener noreferrer">
+                        <img src="@/assets/images/logo/ic_instagram.svg" alt="Instagram Icon">
+                    </a>
                 </div>
-                <div class="icon">
-                    <img src="@/assets/images/logo/ic_instagram.svg" alt="Instagram Icon">
-                </div>
-                <div class="icon">
-                    <img src="@/assets/images/logo/ic_instagram.svg" alt="Instagram Icon">
-                </div>
+
             </div>
         </div>
     </section>
